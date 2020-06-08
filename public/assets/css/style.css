@@ -1,0 +1,182 @@
+@font-face {
+    font-family: AvenirLTStd-Book;
+    src: url("../fonts/AvenirLTStd-Book.woff");
+}
+@font-face {
+    font-family: Poppins-BoldItalic;
+    src: url("../fonts/Poppins-BoldItalic.ttf");
+}
+@font-face {
+    font-family: Poppins-Medium;
+    src: url("../fonts/Poppins-Medium.ttf");
+}
+@font-face {
+    font-family: Poppins-Regular;
+    src: url("../fonts/Poppins-Regular.ttf");
+}
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+@font-face {
+    font-family: Poppins-Light;
+    src: url("../fonts/Poppins-Light.ttf");
+}
+@font-face {
+    font-family: Poppins-LightItalic;
+    src: url("../fonts/Poppins-LightItalic.ttf");
+}
+@font-face {
+    font-family: Roboto;
+    src: url("../fonts/Roboto-Black.ttf");
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: Poppins-Regular;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    background: #dccac8 !important;
+}
+
+.layer {
+    min-height: 400px;
+    top: 50%;
+    position: absolute;
+    margin-top: -200px;
+}
+
+.btn {
+    font-family: Poppins-Regular;
+}
+
+h5 {
+    font-size: 1.1rem;
+    margin: 20px 0;
+}
+
+h5:nth-child(1) {
+    margin-top: 0;
+}
+
+
+button.action-btn {
+    font-size: 1.25rem !important;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: 100px;
+}
+
+/* button.action-btn:focus, button.action-btn:active {
+    background: #fff !important;
+}
+
+.btn.btn-outline-danger.active, .btn.btn-outline-danger.focus, .btn.btn-outline-danger:focus, .btn.btn-outline-danger:hover:not(:disabled) {
+    color: #f4516c !important;
+}
+
+button.action-btn.active, button.action-btn.active:focus {
+    background: #f4516c !important;
+    color: #fff !important;
+} */
+
+button.action-btn {
+    background: #fff !important;
+    color: #f4516c !important;
+    border: 1px solid #f4516c;
+}
+
+button.action-btn.active {
+    color: #fff !important;
+    background: #f4516c !important;
+}
+
+.camera-layer {
+    margin: auto;
+    width: 75%;
+    min-height: 218.2px;
+    border: 4px solid #f4516c;
+    border-radius: 4px;
+    position: relative;
+    background: #f4516c;
+    max-height: 218.2px;
+}
+
+h5 i.text-danger {
+    font-size: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+i.flaticon-profile-1 {
+    margin: 0;
+    position: absolute;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    margin-top: -102px;
+    margin-left: -75.4px;
+    font-size: 150px;
+    color: #fff !important;
+}
+
+@media (max-width: 767px) {
+    .layer {
+        min-height: 400px;
+        top: 20%;
+        position: absolute;
+        margin-top: -100px;
+    }
+
+    .camera-layer {
+        margin-top: 40px;
+    }
+}
+
+video {
+    margin: 0;
+    max-width: 100%;
+    object-fit: cover;
+    height: 210px;
+}
+
+#custom-pic {
+    position: relative;
+}
+
+#custom-pic img {
+    width: 100%;
+    height: 210px;
+}
+
+#custom-pic h6 {
+    margin: 0;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    text-align: center;
+}
+
+#custom-pic h6 span {
+    display: inline-block;
+    text-shadow: 1px 2px #000;
+}
+#custom-pic h6 span:nth-child(1),
+#custom-pic h6 span:nth-child(2) {
+    padding-top: 5px;
+    font-size: 15px;
+}
+#custom-pic h6 span:last-child {
+    padding-bottom: 5px;
+    font-size: 11px;
+}
