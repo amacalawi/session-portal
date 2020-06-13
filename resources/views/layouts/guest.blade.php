@@ -51,6 +51,10 @@
 						var res = $.parseJSON(data);   
 						console.log(res);
 						if (res.type == 'success') {
+							$('#access_granted')[0].play();
+							$('#preview').addClass("hidden");
+							$('#custom-pic').removeClass('hidden');
+							$('#dummy-pic').removeClass('hidden');
 							if (action == 'signin') {
 								$('span.actions').text('signed in');
 							} else {
@@ -63,14 +67,17 @@
 								}
                                 $('body').find('span[name=' + k + ']').text(v);
                             });
+						} else {
+							$('#try_again')[0].play();
+							$('#preview').addClass("hidden");
+							$('#custom-pic').addClass('hidden');
+							$('#dummy-pic').removeClass('hidden');
 						}
 					},
 					complete: function (data) {
 						Instascan.Camera.getCameras().then(function (cameras) {
 							if (cameras.length > 0) {
 								scanner.stop(cameras[0]);
-								$('#preview').addClass("hidden");
-								$('#custom-pic').removeClass('hidden');
 								$('.action-btn').removeClass('active');
 							} else {
 								console.error('No cameras found.');
@@ -86,6 +93,7 @@
 				var self = $(this);
 				self.toggleClass("active");
 				$('#custom-pick').addClass("hidden");
+				$('div.alert-danger').fadeOut();
 
 				if (self.attr('action-taken') == 'signin') {
 					$('.action-btn[action-taken="signout"]').removeClass('active');
@@ -99,6 +107,7 @@
 							scanner.start(cameras[0]); 
 							$('#preview').removeClass("hidden");
 							$('#dummy-pic').addClass('hidden');
+							$('#custom-pic').addClass('hidden');
 						} else {
 							console.error('No cameras found.');
 						}
@@ -111,6 +120,7 @@
 							scanner.stop(cameras[0]);
 							$('#preview').addClass("hidden");
 							$('#dummy-pic').removeClass('hidden');
+							$('#custom-pic').addClass('hidden');
 						} else {
 							console.error('No cameras found.');
 						}

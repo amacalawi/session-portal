@@ -130,9 +130,10 @@ i.flaticon-profile-1 {
 @media (max-width: 767px) {
     .layer {
         min-height: 400px;
-        top: 20%;
-        position: absolute;
-        margin-top: -100px;
+        margin-top: 70px;
+        margin-left: 20px;
+        margin-right: 20px;
+        position: relative;
     }
 
     .camera-layer {

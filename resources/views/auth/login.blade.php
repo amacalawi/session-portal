@@ -56,13 +56,23 @@
                 </div>
             </div>
             <div class="hidden alert alert-danger alert-dismissible fade show m-alert m-alert--air m-alert--outline m-alert--outline-2x" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button> -->
                 <strong>
                     Well done <span name="firstname"></span>! 
                 </strong>
                 You have successfully <span class="actions"></span>.
             </div>
         </div>
+    </div>
+    <div class="row">
+        <audio id="access_granted">
+            <source src="{{ asset('audio/access_granted.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="try_again">
+            <source src="{{ asset('audio/try_again.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 </section>
 @endsection
