@@ -146,6 +146,7 @@ video {
     max-width: 100%;
     object-fit: cover;
     height: 210px;
+    min-width: 100%;
 }
 
 #custom-pic {
