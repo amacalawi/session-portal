@@ -172,7 +172,7 @@ class ScannerController extends Controller
             $is_timeout = ($action == 'signin') ? false : true;
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'http://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)));
+            curl_setopt($ch, CURLOPT_URL, 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)));
             // curl_setopt($ch, CURLOPT_URL, 'http://www.samsv4.com/executes?datas='.urlencode(serialize($send_data)));
             
             // curl_setopt($ch, CURLOPT_URL, 'http://'.$_SERVER['SERVER_NAME'].'/www.samsv4.com/executes?stud_no='.urlencode($res->first()->stud_no).'&stud_name='.urlencode($res->first()->firstname.' '.$res->first()->lastname).'&mode='.urlencode($mode).'&date='.urlencode(date("M-d-y", strtotime($timestamp))).'&time='.urlencode(date("H:i:s", strtotime($timestamp))).'&msisdn='.urlencode($res->first()->msisdn).'&is_timein='.urlencode($is_timein).'&is_timeout='.urlencode($is_timeout).'&full_day='.urlencode($this->fullday(date("D", strtotime($timestamp)))).'&schedule_id='.urlencode($res->first()->schedule_id).'&calendarOverwrite='.urlencode($calendarOverwrite).'');
@@ -186,7 +186,7 @@ class ScannerController extends Controller
             
             $data = array(
                 'data' => $res,
-                'url' => 'http://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)),
+                'url' => 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)),
                 'device' => (new Device)->where('name', 'mobile')->first()->id,
                 'message' => 'the user was successfully signedin.',
                 'type'    => 'success'
