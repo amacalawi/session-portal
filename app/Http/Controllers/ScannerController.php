@@ -173,15 +173,11 @@ class ScannerController extends Controller
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)));
-            // curl_setopt($ch, CURLOPT_URL, 'http://www.samsv4.com/executes?datas='.urlencode(serialize($send_data)));
-            
-            // curl_setopt($ch, CURLOPT_URL, 'http://'.$_SERVER['SERVER_NAME'].'/www.samsv4.com/executes?stud_no='.urlencode($res->first()->stud_no).'&stud_name='.urlencode($res->first()->firstname.' '.$res->first()->lastname).'&mode='.urlencode($mode).'&date='.urlencode(date("M-d-y", strtotime($timestamp))).'&time='.urlencode(date("H:i:s", strtotime($timestamp))).'&msisdn='.urlencode($res->first()->msisdn).'&is_timein='.urlencode($is_timein).'&is_timeout='.urlencode($is_timeout).'&full_day='.urlencode($this->fullday(date("D", strtotime($timestamp)))).'&schedule_id='.urlencode($res->first()->schedule_id).'&calendarOverwrite='.urlencode($calendarOverwrite).'');
-            // curl_setopt($ch, CURLOPT_HEADER, 0);
-            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
-            curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1);
-            curl_exec($ch);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($ch);
             curl_close($ch);
             
             $data = array(
