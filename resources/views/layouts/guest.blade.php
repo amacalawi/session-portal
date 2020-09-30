@@ -64,15 +64,18 @@
 							$.each(res.data[0], function (k, v) {
 								if (k == 'stud_no') {
 									$('#custom-pic img').attr('src', path + '/' + v + '.jpg');
-									$('#custom-pic img').error(function(){
-										$(this).attr('src', path + '/' + v + '.JPG');
-									});
+									// check if image is exist
+									var image = new Image(); 
+									image.src = path + '/' + v + '.jpg';
+									if (image.width == 0) {
+										$('#custom-pic img').attr('src', path + '/' + v + '.JPG');
+									}
 								}
                                 $('body').find('span[name=' + k + ']').text(v);
                             });
-							setTimeout(function(){ 
-								location.replace("http://dioceseofantipolo.net/e/position/nsdaps/4");
-							}, 4000);
+							// setTimeout(function(){ 
+							// 	location.replace("http://dioceseofantipolo.net/e/position/nsdaps/4");
+							// }, 4000);
 						} else {
 							$('#try_again')[0].play();
 							$('#preview').addClass("hidden");
