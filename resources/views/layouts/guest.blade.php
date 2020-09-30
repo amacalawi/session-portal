@@ -64,6 +64,7 @@
 							$.each(res.data[0], function (k, v) {
 								if (k == 'stud_no') {
 									$('#custom-pic img').attr('src', path + '/' + v + '.jpg');
+									// check if image is exist
 									var image = new Image(); 
 									image.src = path + '/' + v + '.jpg';
 									if (image.width == 0) {
