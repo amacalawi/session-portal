@@ -21,3 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/scan', 'ScannerController@index')->name('scan');
+Route::get('/scan-otp', 'ScannerController@scan_otp')->name('scan_otp');
+Route::get('/request-otp', 'ScannerController@request_otp')->name('request');

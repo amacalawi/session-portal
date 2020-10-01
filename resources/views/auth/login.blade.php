@@ -29,7 +29,6 @@
                             <h5 class="text-center">
                                 Please click "Sign In" for signing in, and "Sign Off" for signing out
                             </h5>
-
                             <div class="text-center">
                                 <button type="button" action-taken="signin" class="action-btn btn btn-md">
                                     Sign In
@@ -51,6 +50,22 @@
                                     <h6>
                                 </div>
                             </div>
+                            <div class="camera-layer2 text-center hidden">
+                                <div class="form-group m-form__group">
+                                    <input type="text" class="form-control m-input" id="id_number" name="id_number" placeholder="Enter id number here">
+                                </div>
+                                <button id="request-otp-btn" type="button" class="btn btn-md">
+                                    request an OTP
+                                </button>
+                                <div>
+                                    <input type="text" maxlength="1" name="otp_1" class="form-control box col">
+                                    <input type="text" maxlength="1" name="otp_2" class="form-control box col">
+                                    <input type="text" maxlength="1" name="otp_3" class="form-control box col">
+                                    <input type="text" maxlength="1" name="otp_4" class="form-control box col">
+                                    <input type="text" maxlength="1" name="otp_5" class="form-control box col">
+                                </div>
+                            </div>
+                            <a href="javascript:;" class="text-center qr-problem">having problem with QR Code?</a>
                         </div>
                     </div>
                 </div>
