@@ -224,6 +224,8 @@
 							if (res.type == 'success') {
 								$('#id_number').prop('disabled', true);
 								$('#request-otp-btn').prop('disabled', true);
+							} else {
+								$('#try_again')[0].play();
 							}
 						}
 					});

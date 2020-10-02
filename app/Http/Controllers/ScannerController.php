@@ -30,12 +30,14 @@ class ScannerController extends Controller
         $day = date("D");
         $default_time = strtotime('00:00:00');
         $school_year  = Schoolyear::where('status', 'CURRENT')->first()->id;
+        $levels = array(29, 30, 31, 32, 33, 34);
 
         $res = Member::select('members.id', 'members.stud_no', 'members.firstname', 'members.lastname', 'members.msisdn', 'enrollments.type', 'enrollments.schedule_id')
         ->join('enrollments', function($join)
         {   
             $join->on('members.id', '=', 'enrollments.member_id');
         })
+        ->whereIn('enrollments.levels_id', $levels)
         ->where([
             'enrollments.schoolyear_id' => $school_year,
             'members.stud_no' => $id
@@ -173,7 +175,7 @@ class ScannerController extends Controller
             $is_timeout = ($action == 'signin') ? false : true;
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)));
+            curl_setopt($ch, CURLOPT_URL, 'https://192.168.5.50/samsv4/executes?datas='.urlencode(serialize($send_data)));
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -359,8 +361,20 @@ class ScannerController extends Controller
         $timestamp = date('Y-m-d H:i:s');
         $sql = "UPDATE otp_request SET is_expired = 1 WHERE created_at < DATE_SUB(NOW(),INTERVAL 2 MINUTE)";
         $result = DB::select($sql);
+        $school_year  = Schoolyear::where('status', 'CURRENT')->first()->id;
+        $levels = array(29, 30, 31, 32, 33, 34);
 
-        $member = Member::where('stud_no', $request->get('id_number'))->get();
+        $member = Member::select('members.id', 'members.stud_no', 'members.firstname', 'members.lastname', 'members.msisdn', 'enrollments.levels_id', 'enrollments.type', 'enrollments.schedule_id')
+        ->join('enrollments', function($join)
+        {   
+            $join->on('members.id', '=', 'enrollments.member_id');
+        })
+        ->whereIn('enrollments.levels_id', $levels)
+        ->where([
+            'members.stud_no' => $request->get('id_number'),
+            'enrollments.schoolyear_id' => $school_year
+        ])
+        ->get();
 
         if ($member->count() > 0) {
             $random = mt_rand(10000, 50000);
@@ -380,7 +394,7 @@ class ScannerController extends Controller
 
             $ch = curl_init();
             $url = 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/otp-request?datas='.urlencode(serialize($send_data));
-            curl_setopt($ch, CURLOPT_URL, 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/otp-request?datas='.urlencode(serialize($send_data)));
+            curl_setopt($ch, CURLOPT_URL, 'https://192.168.5.50/samsv4/otp-request?datas='.urlencode(serialize($send_data)));
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -416,12 +430,14 @@ class ScannerController extends Controller
         $day = date("D");
         $default_time = strtotime('00:00:00');
         $school_year  = Schoolyear::where('status', 'CURRENT')->first()->id;
+        $levels = array(29, 30, 31, 32, 33, 34);
 
-        $res = Member::select('members.id', 'members.stud_no', 'members.firstname', 'members.lastname', 'members.msisdn', 'enrollments.type', 'enrollments.schedule_id')
+        $res = Member::select('members.id', 'members.stud_no', 'members.firstname', 'members.lastname', 'members.msisdn', 'enrollments.levels_id', 'enrollments.type', 'enrollments.schedule_id')
         ->join('enrollments', function($join)
         {   
             $join->on('members.id', '=', 'enrollments.member_id');
         })
+        ->whereIn('enrollments.levels_id', $levels)
         ->where([
             'enrollments.schoolyear_id' => $school_year,
             'members.stud_no' => $id
@@ -568,7 +584,7 @@ class ScannerController extends Controller
             $is_timeout = ($action == 'signin') ? false : true;
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'https://'.$_SERVER['SERVER_NAME'].'/samsv4/executes?datas='.urlencode(serialize($send_data)));
+            curl_setopt($ch, CURLOPT_URL, 'https://192.168.5.50/samsv4/executes?datas='.urlencode(serialize($send_data)));
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_HEADER, 0);
